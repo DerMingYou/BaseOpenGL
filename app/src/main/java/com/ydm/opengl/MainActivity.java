@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         TextView tvEnterOpenGL = findViewById(R.id.tvEnterOpenGL);
 
         tvEnterOpenGL.setOnClickListener(v -> {
-            OpenGLActivity.launch(this);
+            OpenGLActivity.launch(this, OpenGLActivity.FROM_TYPE_THREE);
         });
     }
 }

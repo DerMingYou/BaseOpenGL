@@ -25,16 +25,26 @@ import javax.microedition.khronos.opengles.GL10;
  */
 public class OpenGLActivity extends AppCompatActivity {
 
+    private final static String FROM_TYPE = "from_type";
+    public final static int FROM_TYPE_ONE = 1;
+    public final static int FROM_TYPE_TWO = 2;
+    public final static int FROM_TYPE_THREE = 3;
+
     private GLSurfaceView glSurfaceView;
-    private OneGlRenderer mRenderer;
+    private OriginalGLRenderer originalGLRenderer;
+    private ColorGLRenderer colorGLRenderer;
+    private OneGlRenderer oneGlRenderer;
 
     private Triangle mTriangle;
     private Square mSquare;
 
     private boolean rendererSet = false;  //渲染器
 
-    public static void launch(Context context){
+    private int type = FROM_TYPE_ONE;
+
+    public static void launch(Context context, int type){
         Intent intent = new Intent(context, OpenGLActivity.class);
+        intent.putExtra(FROM_TYPE, type);
         context.startActivity(intent);
     }
 
@@ -45,7 +55,11 @@ public class OpenGLActivity extends AppCompatActivity {
 
         setContentView(glSurfaceView);
 
-        mRenderer = new OneGlRenderer();
+        type = getIntent().getIntExtra(FROM_TYPE, 0);
+
+        oneGlRenderer = new OneGlRenderer();
+        originalGLRenderer = new OriginalGLRenderer();
+        colorGLRenderer = new ColorGLRenderer();
 
         ActivityManager activityManager =
                 (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -64,7 +78,18 @@ public class OpenGLActivity extends AppCompatActivity {
 
         if (supportsEs2) {
             glSurfaceView.setEGLContextClientVersion(2);
-            glSurfaceView.setRenderer(mRenderer);
+            switch (type){
+                case FROM_TYPE_ONE:
+                    glSurfaceView.setRenderer(oneGlRenderer);
+                    break;
+                case FROM_TYPE_TWO:
+                    glSurfaceView.setRenderer(originalGLRenderer);
+                    break;
+                case FROM_TYPE_THREE:
+                    glSurfaceView.setRenderer(colorGLRenderer);
+                    break;
+            }
+
             rendererSet = true;
         } else {
             Toast.makeText(this, "This device does not support OpenGL ES 2.0.",
