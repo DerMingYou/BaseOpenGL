@@ -3,4 +3,16 @@
     <color name="colorPrimary">#ffde9d</color>
     <color name="colorPrimaryDark">#ffde9d</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="orange">#FF6600</color>
+    <color name="white">#ffffff</color>
+
+    <color name="normal_black_1">#333333</color>
+    <color name="normal_black_2">#666666</color>
+    <color name="normal_black_3">#999999</color>
+    <color name="normal_black_4">#CCCCCC</color>
+    <color name="normal_black_5">#f4f4f4</color>
+    <color name="normal_black_6">#dddddd</color>
+    <color name="normal_black_b">#bbbbbb</color>
+    <color name="normal_black_eee">#eeeeee</color>
 </resources>

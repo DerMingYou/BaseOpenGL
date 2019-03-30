@@ -7,5 +7,5 @@ import android.support.v7.app.AppCompatActivity;
  * Data：2019/3/29-10:12
  * Author: DerMing_You
  */
-public class AirHockeyRenderer extends AppCompatActivity {
+public class ShowShapeActivity extends AppCompatActivity {
 }

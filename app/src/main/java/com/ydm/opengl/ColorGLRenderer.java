@@ -56,7 +56,7 @@ public class ColorGLRenderer implements GLSurfaceView.Renderer {
         Matrix.setRotateM(mRotationMatrix, 0, mAngle, 0, 0, -1.0f);
         Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
 
-        mTriangle.draw(scratch);
+        mTriangleColor.draw(scratch);
     }
 
     // mMVPMatrix is an abbreviation for "Model View Projection Matrix"

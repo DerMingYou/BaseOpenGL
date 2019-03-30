@@ -18,11 +18,11 @@ public class ColorTriangle {
     private FloatBuffer vertexBuffer,colorBuffer;
     private final String vertexShaderCode =
             "attribute vec4 vPosition;" +
-                    "uniform mat4 vMatrix;"+
+                    "uniform mat4 uMVPMatrix;"+
                     "varying  vec4 vColor;"+
                     "attribute vec4 aColor;"+
                     "void main() {" +
-                    "  gl_Position = vMatrix*vPosition;" +
+                    "  gl_Position = uMVPMatrix*vPosition;" +
                     "  vColor=aColor;"+
                     "}";
 
@@ -36,10 +36,18 @@ public class ColorTriangle {
     private int mProgram;
 
     static final int COORDS_PER_VERTEX = 3;
+    //顶点位置相关
     static float triangleCoords[] = {
-            0.5f,  0.5f, 0.0f, // top
-            -0.5f, 0.5f, 0.0f, // bottom left
-            0.5f, -0.5f, 0.0f  // bottom right
+            0.0f,  0.622008459f, 0.0f, // top
+            -0.5f, -0.311004243f, 0.0f, // bottom left
+            0.5f, -0.311004243f, 0.0f  // bottom right
+    };
+
+    //设置颜色
+    float color[] = {
+            1.0f, 0f, 0f, 1.0f ,
+            0f, 1.0f, 0f, 1.0f ,
+            0f, 0f, 1.0f, 1.0f
     };
 
     private int mPositionHandle;
@@ -54,14 +62,7 @@ public class ColorTriangle {
     //顶点之间的偏移量
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 每个顶点四个字节
 
-    private int mMatrixHandler;
-
-    //设置颜色
-    float color[] = {
-            0.0f, 1.0f, 0.0f, 1.0f ,
-            1.0f, 0.0f, 0.0f, 1.0f,
-            0.0f, 0.0f, 1.0f, 1.0f
-    };
+    private int mMVPMatrixHandle;
 
     public ColorTriangle() {
         ByteBuffer bb = ByteBuffer.allocateDirect(
@@ -98,9 +99,9 @@ public class ColorTriangle {
         //将程序加入到OpenGLES2.0环境
         GLES20.glUseProgram(mProgram);
         //获取变换矩阵vMatrix成员句柄
-        mMatrixHandler= GLES20.glGetUniformLocation(mProgram,"vMatrix");
+        mMVPMatrixHandle= GLES20.glGetUniformLocation(mProgram,"uMVPMatrix");
         //指定vMatrix的值
-        GLES20.glUniformMatrix4fv(mMatrixHandler,1,false,mvpMatrix,0);
+        GLES20.glUniformMatrix4fv(mMVPMatrixHandle,1,false,mvpMatrix,0);
         //获取顶点着色器的vPosition成员句柄
         mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
         //启用三角形顶点的句柄

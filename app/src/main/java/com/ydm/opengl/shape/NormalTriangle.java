@@ -35,13 +35,6 @@ public class NormalTriangle {
     private int mMVPMatrixHandle;
     // number of coordinates per vertex in this array
     static final int COORDS_PER_VERTEX = 3;
-    /*static float triangleCoords[] = {   // in counterclockwise order:
-            0.0f,  0.5f, 0.0f, // top
-            -0.5f, -0.5f, 0.0f, // bottom left
-            0.5f, -0.5f, 0.0f  // bottom right
-    };
-    // Set color with red, green, blue and alpha (opacity) values
-    float color[] = { 255, 0, 0, 1.0f };*/
 
     static float triangleCoords[] = {   // in counterclockwise order:
             0.0f,  0.622008459f, 0.0f, // top
@@ -117,11 +110,6 @@ public class NormalTriangle {
                 GLES20.GL_FLOAT, false,
                 vertexStride, vertexBuffer);
 
-       /* // 获取片段着色器的vColor成员的句柄
-        mColorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
-        // 设置绘制三角形的颜色
-        GLES20.glUniform4fv(mColorHandle, 1, colorBuffer, 0);*/
-
         //获取片元着色器的vColor成员的句柄
         mColorHandle = GLES20.glGetAttribLocation(mProgram, "aColor");
         //设置绘制三角形的颜色
@@ -129,7 +117,6 @@ public class NormalTriangle {
         GLES20.glVertexAttribPointer(mColorHandle,4,
                 GLES20.GL_FLOAT,false,
                 0,colorBuffer);
-
 
         // 画三角形
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
