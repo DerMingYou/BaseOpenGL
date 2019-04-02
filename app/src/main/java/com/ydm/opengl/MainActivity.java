@@ -11,10 +11,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tvEnterOpenGL = findViewById(R.id.tvEnterOpenGL);
+        TextView tvOnePart = findViewById(R.id.tvOnePart);
+        TextView tvTwoPart = findViewById(R.id.tvTwoPart);
+        TextView tvThreePart = findViewById(R.id.tvThreePart);
+        TextView tvFourPart = findViewById(R.id.tvFourPart);
+        TextView tvFivePart = findViewById(R.id.tvFivePart);
+        TextView tvSixPart = findViewById(R.id.tvSixPart);
 
-        tvEnterOpenGL.setOnClickListener(v -> {
+        tvOnePart.setOnClickListener(v -> {
             ShowShapeActivity.launch(this);
+        });
+
+        tvTwoPart.setOnClickListener(v -> {
+
+        });
+        tvThreePart.setOnClickListener(v -> {
+
+        });
+        tvFourPart.setOnClickListener(v -> {
+
+        });
+        tvFivePart.setOnClickListener(v -> {
+
+        });
+        tvSixPart.setOnClickListener(v -> {
+
         });
     }
 }
