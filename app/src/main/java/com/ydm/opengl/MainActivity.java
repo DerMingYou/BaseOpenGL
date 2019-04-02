@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         tvTwoPart.setOnClickListener(v -> {
-
+            HandleGreenDaoActivity.launch(this);
         });
         tvThreePart.setOnClickListener(v -> {
 

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 
 android {
     compileSdkVersion 28
@@ -22,11 +23,18 @@ android {
     }
 }
 
+greendao {
+    schemaVersion 1  //当前数据库版本
+    daoPackage 'com.ydm.opengl.db.entity'  //生成的Dao DaoMaster和DaoSession的包名称（源实体类的包名类）
+    targetGenDir 'src/main/java'  //生成源应存储的位置。默认为构建目录（build\generated\source\greenDao）
+}
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'org.greenrobot:greendao:3.2.2'
 }
